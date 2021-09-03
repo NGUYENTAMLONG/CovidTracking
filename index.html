@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COVID APP</title>
+    <link rel="stylesheet" href="style/style.css" />
+  </head>
+  <body>
+    <!-- ScrollBar -->
+    <div class="scrollbar"></div>
+    <!-- ******************* -->
+    <!-- Menu -->
+    <!--    Made by Erik Terwan    -->
+    <!--   24th of November 2015   -->
+    <!--        MIT License        -->
+    <nav role="navigation">
+      <div id="menuToggle">
+        <!--
+    A fake / hidden checkbox is used as click reciever,
+    so you can use the :checked selector on it.
+    -->
+        <input type="checkbox" />
+
+        <!--
+    Some spans to act as a hamburger.
+    
+    They are acting like a real hamburger,
+    not that McDonalds stuff.
+    -->
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <!--
+    Too bad the menu has to be inside of the button
+    but hey, it's pure CSS magic.
+    -->
+        <ul id="menu">
+          <a href="#header"><li>Tra cứu</li></a>
+          <a href="#summary"><li>Thống kê chung</li></a>
+          <a href="#chartdiv"><li>Biểu đồ donut</li></a>
+          <a href="#chartdiv2"><li>Biểu đồ cột tích lũy</li></a>
+          <a href="#cupChart"><li>Biểu đồ cốc</li></a>
+          <a href="#chartdiv3D"><li>Biểu đồ 3D</li></a>
+          <a href="#chart7_30"><li>Biểu đồ theo tuần / tháng</li></a>
+          <a href="#chartdiv_map"><li>Bản đồ ca nhiễm</li></a>
+          <a href="#chartdivGlobal"><li>Biểu đồ ca tử vong</li></a>
+          <a href="#trackingMap"><li>Tra cứu bản đồ</li></a>
+          <a
+            href="https://www.worldometers.info/coronavirus/?utm_campaign=homeAdvegas1?"
+            target="_blank"
+            ><li>Nguồn chính thống</li></a
+          >
+        </ul>
+      </div>
+    </nav>
+    <!-- header -->
+    <h1 id="header">
+      Theo dõi tình hình covid trên thế giới
+      <img
+        src="images/Virus-Corona-Mouth-Guard-Respiratory-Mask-Icon-5108188.png"
+        style="zoom: 0.05"
+        alt=""
+      />
+      <img src="images/corona-5206905_960_720.webp" style="zoom: 0.07" alt="" />
+      <img src="images/2913604.png" alt="" style="zoom: 0.07" />
+      <img
+        src="images/5e6f353a0f8bc38b8bbcc052_iconfinder_29-Doctor_5929215.png"
+        style="zoom: 0.15"
+        alt=""
+      />
+    </h1>
+    <!-- end header -->
+
+    <!-- body -->
+    <!-- Tra ten dat nuoc -->
+    <div class="zone">
+      <label for="">Tra theo tên đất nước:</label>
+      <select name="country" id="country">
+        <option disabled selected value>-- Select an Country --</option>
+      </select>
+    </div>
+    <!-- ****************************** -->
+    <!-- hien thi thoi gian cap nhat vao luc ....  -->
+    <div class="note"></div>
+    <!-- ****************************** -->
+    <!-- Hien thi du lieu the gioi -->
+    <div class="world" id="summary"></div>
+    <!-- ****************************** -->
+    <!-- hien thi country flag -->
+    <div class="tooltip">
+      <div class="flag"></div>
+      <div class="tooltiptext">ABC</div>
+    </div>
+    <!-- ****************************** -->
+    <!-- hien thi cac con so covid cua quoc gia vua tra cuu -->
+    <div class="desc_num">
+      <!-- Du lieu ca mac -->
+      <div class="desc_num--confirmed">
+        <wired-card
+          elevation=""
+          fill="rgb(231, 5, 5)"
+          style="color: lightyellow; padding: 25px 30px"
+          class="wired-rendered"
+        >
+          <h2 class="title_num">Số ca mắc</h2>
+          <div class="counter">0</div>
+        </wired-card>
+      </div>
+      <!-- Du lieu ca binh phuc -->
+      <div class="desc_num--recovered">
+        <wired-card
+          elevation=""
+          fill="rgb(6, 201, 23)"
+          style="color: lightyellow; padding: 25px 30px"
+          class="wired-rendered"
+        >
+          <h2 class="title_num">Số ca bình phục trong ngày</h2>
+          <div class="counter">0</div>
+        </wired-card>
+      </div>
+      <!-- Du lieu ca tu vong -->
+      <div class="desc_num--death">
+        <wired-card
+          elevation=""
+          fill="gray"
+          style="color: lightyellow; padding: 25px 30px"
+          class="wired-rendered"
+        >
+          <h2 class="title_num">Số ca tử vong</h2>
+          <div class="counter">0</div>
+        </wired-card>
+      </div>
+    </div>
+    <!--  ****************************** -->
+    <!--  Biểu đồ thể hiện tỷ lệ số ca mắc giữa các nước đại diện trên thế giới 
+ -->
+    <div id="chartdiv"></div>
+    <h2>
+      📈 Biểu đồ thể hiện tỷ lệ số ca mắc giữa các nước đại diện trên thế giới
+      🌍
+    </h2>
+    <!--  ****************************** -->
+    <!-- Biểu đồ thể hiện số ca tử vong và tổng tích lũy của các nước đại diện trên thế giới-->
+    <div id="chartdiv2"></div>
+    <h2 style="margin-bottom: 100px">
+      📊 Biểu đồ thể hiện số ca tử vong và tổng tích lũy của các nước đại diện
+      trên thế giới 🌍
+    </h2>
+    <!--  ****************************** -->
+    <!-- Biểu đồ thể hiện tỷ lệ tổng số ca tử vong và tổng số ca mắc của dat nuoc vua tra cuu -->
+    <div id="cupChart"></div>
+    <h2 id="cupChart_title"></h2>
+    <!--  ****************************** -->
+    <!-- Biểu đồ 3D  barchart-->
+    <div id="chartdiv3D"></div>
+    <h2>
+      📈 Biểu đồ so sánh số ca mắc giữa các nước đại diện trên thế giới 🌍
+    </h2>
+    <!--  ****************************** -->
+    <!-- Biểu đồ biểu đồ thể hiện ca mắc trong 7/30 ngày gần nhất của nước tra cứu-->
+    <!-- Nút ẩn hiện biểu đồ 7/30 -->
+    <div class="btn">
+      <wired-button elevation="3" class="btn_item">30 ngày</wired-button>
+      <wired-button elevation="3" class="btn_item" disabled
+        >7 ngày</wired-button
+      >
+    </div>
+    <!-- Biểu đồ 7 ngày -->
+    <div class="chart" id="chart7_30"></div>
+    <!-- Biểu đồ 30 ngày  -->
+    <div class="chart30 none" id="chart7_30"></div>
+    <!--  ****************************** -->
+    <!-- Biểu đồ số ca nhiễm mới toàn bộ bản đồ các nước trên thế giới -->
+    <div id="chartdiv_map"></div>
+    <!--  ****************************** -->
+    <!-- Biểu đồ trái đất sô ca tử vong mới ghi nhận của các quốc qia -->
+    <div id="chartdivGlobal"></div>
+    <h2
+      style="
+        background-color: yellowgreen;
+        padding: 3px 20px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      "
+    >
+      🌍 Bản đồ các nước thế giới về số ca tử vong mới ghi nhận 🌍
+    </h2>
+    <!--  ****************************** -->
+    <!-- ban do the thoi test.html (file)-->
+    <iframe
+      src="./map.html"
+      height="800px"
+      width="100%"
+      title="Iframe Example"
+      id="trackingMap"
+    ></iframe>
+    <!-- **************************** -->
+    <!-- end body -->
+  </body>
+
+  <!-- Link jquery -->
+  <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"
+  ></script>
+  <!-- Link chart js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <!-- Link wired js -->
+  <script type="module" src="https://unpkg.com/wired-elements?module"></script>
+
+  <script
+    type="module"
+    src="https://unpkg.com/wired-elements/lib/wired-card.js?module"
+  ></script>
+  <!-- ************************ -->
+
+  <!-- Link ScrollEffect -->
+  <script src="javascript/ScrollEffect.js"></script>
+  <!-- ********************************************* -->
+  <!--link  Tracking  -->
+  <script src="javascript/tracking.js"></script>
+  <!-- ***************************************************** -->
+
+  <!-- Resources -->
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/maps.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+  <!-- For Global MAP -->
+  <script src="https://cdn.amcharts.com/lib/4/geodata/continentsLow.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+  <!-- <script src="https://cdn.amcharts.com/lib/4/geodata/continentsLow.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/geodata/worldLow.js"></script> -->
+
+  <!--link  Chartdiv2  -->
+  <script src="javascript/chartdiv2.js"></script>
+  <!-- ******************** -->
+
+  <!--link  Bản đồ thế giới khoanh vùng số ca nhiễm mới vong theo cỡ lớn nhỏ flat +  biểu đồ GLOBAL -->
+  <script src="javascript/chartdiv_map.js"></script>
+  <!-- ******************** -->
+
+  <!-- Chart 3D -->
+  <script src="javascript/chart3D.js"></script>
+  <!-- ******************** -->
+</html>
